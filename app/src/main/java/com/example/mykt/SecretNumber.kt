@@ -6,6 +6,10 @@ class SecretNumber {
     val secretNumber : Int = Random().nextInt(10) + 1
     var count = 0
 
+    /**
+     * @param number (int) input number
+     * @return secretNumber different value
+     */
     fun validate(number : Int) : Int {
         count ++
         return number - secretNumber
