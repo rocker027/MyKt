@@ -6,11 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_materia.*
 
-class MateriaActivity : AppCompatActivity(), GuessFragment.OnFragmentInteractionListener , GuessResultFragment.OnFragmentInteractionListener {
-    override fun onFragmentInteraction(uri: Uri) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
+class MateriaActivity : AppCompatActivity(){
     val secretNumber = SecretNumber()
     /**
      * MateriaActivity
@@ -33,9 +29,5 @@ class MateriaActivity : AppCompatActivity(), GuessFragment.OnFragmentInteraction
                 .setNeutralButton("Cancel", null)
                 .show()
         }
-
-
     }
-
-
 }

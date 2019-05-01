@@ -2,25 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/guessFragment">
-    <fragment android:id="@+id/guessFragment" android:name="com.example.mykt.GuessFragment"
-              android:label="fragment_guess" tools:layout="@layout/fragment_guess">
-        <action
-                android:id="@+id/action_guessFragment_to_guessResultFragment"
-                app:destination="@id/guessResultFragment"/>
-        <argument android:name="guess_arg1"
-                  app:argType="string"
-                  android:defaultValue="this is test value"
-                />
-        <argument
-                android:name="guess_arg2"
-                app:argType="integer"
-                android:defaultValue="0"/>
-
-    </fragment>
+            app:startDestination="@id/guessGameFragment">
     <fragment
-            android:id="@+id/guessResultFragment"
-            android:name="com.example.mykt.GuessResultFragment"
-            android:label="fragment_guess_result"
-            tools:layout="@layout/fragment_guess_result"/>
+            android:id="@+id/guessGameFragment"
+            android:name="com.example.mykt.fragment.GuessGameFragment"
+            android:label="GuessGameFragment"/>
 </navigation>
