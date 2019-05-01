@@ -3,7 +3,7 @@ package com.example.mykt
 import java.util.*
 
 class SecretNumber {
-    val secretNumber : Int = Random().nextInt(10) + 1
+    var secretNumber : Int = Random().nextInt(10) + 1
     var count = 0
 
     /**
@@ -13,6 +13,11 @@ class SecretNumber {
     fun validate(number : Int) : Int {
         count ++
         return number - secretNumber
+    }
+
+    fun reset() {
+        secretNumber = Random().nextInt(10)+1
+        count = 0
     }
 
 }
