@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mykt.R
 import com.example.mykt.databinding.GuessGameFragmentBinding
+import com.example.mykt.utils.ANSWER
+import com.example.mykt.utils.BIGGER
+import com.example.mykt.utils.SMALLER
 import com.example.mykt.viewmodel.GuessGameViewModel
 
 
@@ -44,16 +48,24 @@ class GuessGameFragment : Fragment() {
         binding.btnSend.setOnClickListener { v ->
             if (binding.edtInput.text.isEmpty()) {
                 showDialog("Error", "Please input number")
-            } else {
-                var diff = viewModel.validateNumber(binding.edtInput.text.toString().toInt())
-                if (diff > 0) {
-                    showDialog("Message", "Bigger")
-                } else if (diff < 0) {
-                    showDialog("Message", "smaller")
-                } else {
-                    showDialog("Congratulations", "You win")
-                    viewModel.resetSecretNumber()
-                }
+                return@setOnClickListener
+            }
+
+            checkResult()
+        }
+    }
+
+    private fun checkResult() {
+        var diff = viewModel.validateNumber(binding.edtInput.text.toString().toInt())
+        when (diff) {
+            BIGGER -> showDialog("Message", "Bigger")
+            SMALLER -> showDialog("Message", "smaller")
+            ANSWER -> {
+                showDialog("Congratulations", "You win")
+                viewModel.resetSecretNumber()
+            }
+            else -> {
+                return
             }
         }
     }

@@ -1,5 +1,8 @@
 package com.example.mykt
 
+import com.example.mykt.utils.ANSWER
+import com.example.mykt.utils.BIGGER
+import com.example.mykt.utils.SMALLER
 import java.util.*
 
 class SecretNumber {
@@ -10,10 +13,17 @@ class SecretNumber {
      * @param number (int) input number
      * @return secretNumber different value
      */
-    fun validate(number : Int) : Int {
+    fun validate(number : Int) : String {
         count ++
         println("secret number : ${secretNumber} , coout : ${count}")
-        return number - secretNumber
+        var diff = number - secretNumber
+        if (diff > 0 ) {
+            return BIGGER
+        }else if (diff < 0) {
+            return SMALLER
+        } else {
+            return ANSWER
+        }
     }
 
     fun reset() {

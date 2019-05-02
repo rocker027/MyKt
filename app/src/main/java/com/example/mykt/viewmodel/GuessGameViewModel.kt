@@ -1,10 +1,17 @@
 package com.example.mykt.viewmodel
 
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.mykt.SecretNumber
 
 class GuessGameViewModel : ViewModel() {
     private val secretNumber = SecretNumber()
+
+    /**
+     * live data
+     */
+    var mData = MutableLiveData<String>()
 
     /**
      * validate user input number
@@ -13,7 +20,7 @@ class GuessGameViewModel : ViewModel() {
      *                  < 0 is smaller secretNumber ,
      *                  == 0 is answer
      */
-    fun validateNumber(number: Int): Int {
+    fun validateNumber(number: Int): String {
         return secretNumber.validate(number)
     }
 
@@ -22,5 +29,20 @@ class GuessGameViewModel : ViewModel() {
      */
     fun resetSecretNumber() {
         secretNumber.reset()
+    }
+
+    /**
+     * get live data
+
+    viewModel.mData.observe(this, object : Observer<String> {
+    override fun onChanged(t: String?) {
+    println(t)
+    }
+    })
+
+
+     */
+    fun getData(): LiveData<String> {
+        return mData
     }
 }
