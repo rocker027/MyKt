@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/guessGameFragment">
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/mainFunFragment">
+    <fragment
+            android:id="@+id/mainFunFragment"
+            android:name="com.example.mykt.fragment.MainFunFragment"
+            android:label="main_fun_fragment"
+            tools:layout="@layout/main_fun_fragment">
+        <action
+                android:id="@+id/action_mainFunFragment_to_guessGameFragment"
+                app:destination="@id/guessGameFragment"/>
+    </fragment>
     <fragment
             android:id="@+id/guessGameFragment"
             android:name="com.example.mykt.fragment.GuessGameFragment"
-            android:label="GuessGameFragment"/>
+            android:label="GuessGameFragment">
+        <action
+                android:id="@+id/action_guessGameFragment_to_guessResultFragment"
+                app:destination="@id/guessResultFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/guessResultFragment"
+            android:name="com.example.mykt.GuessResultFragment"
+            android:label="guess_result_fragment"
+            tools:layout="@layout/guess_result_fragment">
+        <action
+                android:id="@+id/action_guessResultFragment_to_mainFunFragment"
+                app:destination="@id/mainFunFragment"/>
+    </fragment>
 </navigation>

@@ -50,7 +50,6 @@ class GuessGameFragment : Fragment() {
                 showDialog("Error", "Please input number")
                 return@setOnClickListener
             }
-
             checkResult()
         }
     }
