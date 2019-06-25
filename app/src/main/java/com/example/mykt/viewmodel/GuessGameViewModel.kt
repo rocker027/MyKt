@@ -1,18 +1,18 @@
 package com.example.mykt.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mykt.SecretNumber
+import com.example.mykt.model.GuessGameDataModel
+import com.example.mykt.utils.ANSWER
+import com.example.mykt.utils.BIGGER
+import com.example.mykt.utils.SMALLER
 
 class GuessGameViewModel : ViewModel() {
     private val secretNumber = SecretNumber()
-
-    /**
-     * live data
-     */
-    var mData = MutableLiveData<String>()
-
+    val guessNumberLiveData = MutableLiveData<String>()
+    val isShowDailog = MutableLiveData<Boolean>()
+    var dataModel = GuessGameDataModel("",0,"","")
     /**
      * validate user input number
      * @param number (Int) input number
@@ -29,6 +29,7 @@ class GuessGameViewModel : ViewModel() {
      */
     fun resetSecretNumber() {
         secretNumber.reset()
+        isShowDailog.value = false
     }
 
     /**
@@ -42,7 +43,52 @@ class GuessGameViewModel : ViewModel() {
 
 
      */
-    fun getData(): LiveData<String> {
-        return mData
+
+
+    fun checkResult() {
+        dataModel.guessAnswer = secretNumber.getNumber()
+
+        val input = guessNumberLiveData.value
+
+        if (input.isNullOrEmpty()) {
+            dataModel.guessNumber = ""
+            dataModel.msgTitle = "Error"
+            dataModel.msgContent = "Please input number"
+            isShowDailog.value = true
+            return
+        }
+
+        var diff = input.let {
+            validateNumber(it.toInt())
+        }
+
+        when (diff) {
+            BIGGER -> {
+                dataModel.guessNumber = ""
+                guessNumberLiveData.value = ""
+                dataModel.msgTitle = "Message"
+                dataModel.msgContent = "Bigger"
+                isShowDailog.value = true
+            }
+            SMALLER -> {
+                dataModel.guessNumber = ""
+                guessNumberLiveData.value = ""
+                dataModel.msgContent = "Smaller"
+                dataModel.msgTitle = "Message"
+                isShowDailog.value = true
+            }
+            ANSWER -> {
+                dataModel.guessNumber = ""
+                guessNumberLiveData.value = ""
+                dataModel.msgTitle = "Congratulations"
+                dataModel.msgContent = "You win"
+                isShowDailog.value = true
+                resetSecretNumber()
+            }
+            else -> {
+                return
+            }
+        }
+
     }
 }

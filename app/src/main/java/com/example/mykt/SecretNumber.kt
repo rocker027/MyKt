@@ -31,4 +31,5 @@ class SecretNumber {
         count = 0
     }
 
+    fun getNumber() : Int = secretNumber
 }

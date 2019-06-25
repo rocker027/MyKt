@@ -19,7 +19,7 @@ class MateriaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_materia)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             alert {
                 title = "Replay Game"
                 message = "Are you sure"
